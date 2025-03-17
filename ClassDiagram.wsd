@@ -1,0 +1,66 @@
+@startuml diagram1
+
+class Employee {
+    + emp_id: int
+    + name: str
+    + role: str
+    + fetch_employee_data(): void
+    + display_info(): str
+}
+
+class Doctor {
+    + specialty: str
+    + fetch_doctor_data(): void
+    + display_info(): str
+    + view_patients(): void
+}
+
+class Patient {
+    + patient_id: int
+    + name: str
+    + age: int
+    + fetch_patient_data(): void
+    + display_info(): str
+}
+
+class DataEntry {
+    + add_record(table: str, record: dict): str
+    + delete_record(table: str, record_id: int): str
+    + search(table: str, query: dict): str
+    + print_prescriptions(): void
+    + display_info(): str
+}
+
+class Manager {
+    + display_info(): str
+}
+
+class Prescription {
+    + patient_id: int
+    + doctor_id: int
+    + medication: str
+    + dosage: str
+    + save_to_db(): void
+    + display_info(): str
+}
+
+class PrescriptionFactory {
+    + create_prescription(patient_id: int, doctor_id: int, medication: str, dosage: str): Prescription
+}
+
+' Inheritance relationships
+Doctor --|> Employee
+DataEntry --|> Employee
+Manager --|> Employee
+
+' Associations
+Doctor --* Prescription
+Patient --* Prescription
+Doctor --* Patient : "treats"
+PrescriptionFactory --* Prescription
+DataEntry --* Prescription : "prints"
+DataEntry --* Patient : "manages records"
+DataEntry --* Doctor : "manages records"
+Manager --* Employee : "oversees"
+
+@enduml
