@@ -1,0 +1,47 @@
+**Project Name:** Hospitality System
+
+**Overview:**
+This system manages hospital operations, including employee records, patient data, and prescriptions. It ensures efficient data handling and role-based access.
+
+**Key Features:**
+1. **Employee Management**
+   - Doctors, Managers, and Data Entry Staff can be registered.
+   - Employees have unique IDs, names, and roles.
+   - Employees can fetch their details from the database.
+
+2. **Doctor Functionality**
+   - Doctors have a specialty field.
+   - They can access patient records and prescribe medication.
+
+3. **Patient Management**
+   - Patients have unique IDs, names, and ages.
+   - Their medical records, including prescriptions, are stored in the database.
+
+4. **Data Entry Staff Functions**
+   - Can add and delete records from the database.
+   - Can fetch and print prescriptions for patients.
+
+5. **Prescriptions**
+   - Doctors create prescriptions for patients.
+   - Stored in the database with patient and doctor references.
+   - Prescription details include medication and dosage.
+
+6. **Role Validation**
+   - Only predefined roles (Doctor, Manager, Data Entry) are allowed.
+   - Invalid roles should raise an error.
+
+7. **Database Connection**
+   - Uses MySQL to store and retrieve data.
+   - Ensures secure and efficient data transactions.
+
+**Technical Specifications:**
+- **Programming Language:** Python
+- **Database:** MySQL
+- **Libraries Used:** PyMySQL, Pytest
+- **Design Principles:** OOP, SOLID Principles, Factory Pattern
+- **Testing:** Uses Pytest for unit testing
+
+**Expected Outcomes:**
+- A functional system that efficiently manages hospital data.
+- Secure and reliable role-based access control.
+- Proper error handling for invalid data entries.
