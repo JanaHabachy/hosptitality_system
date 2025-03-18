@@ -1,7 +1,6 @@
 import pymysql
 from abc import ABC, abstractmethod
 
-# Database connection function
 def get_db_connection():
     return pymysql.connect(
         host='localhost',
@@ -11,7 +10,6 @@ def get_db_connection():
         cursorclass=pymysql.cursors.DictCursor
     )
 
-# Abstract Employee class
 class Employee(ABC):
     def __init__(self, emp_id: int):
         self.emp_id = emp_id
@@ -34,7 +32,6 @@ class Employee(ABC):
     def display_info(self):
         pass
 
-# Doctor class inheriting Employee
 class Doctor(Employee):
     def __init__(self, emp_id: int):
         super().__init__(emp_id)
@@ -55,7 +52,6 @@ class Doctor(Employee):
     def display_info(self):
         return f"Doctor {self.name}, Specialty: {self.specialty}"
 
-# Patient class
 class Patient:
     def __init__(self, patient_id: int):
         self.patient_id = patient_id
@@ -75,7 +71,6 @@ class Patient:
         cursor.close()
         connection.close()
 
-# DataEntry class inheriting Employee
 class DataEntry(Employee):
     def __init__(self, emp_id: int):
         super().__init__(emp_id)
@@ -121,7 +116,6 @@ class DataEntry(Employee):
     def display_info(self):
         return f"Data Entry Staff: {self.name}"
 
-# Manager class inheriting Employee
 class Manager(Employee):
     def __init__(self, emp_id: int):
         super().__init__(emp_id)
@@ -129,7 +123,6 @@ class Manager(Employee):
     def display_info(self):
         return f"Manager: {self.name}"
 
-# Prescription Factory
 class Prescription:
     def __init__(self, patient_id: int, doctor_id: int, medication: str, dosage: str):
         self.patient_id = patient_id
@@ -150,13 +143,11 @@ class Prescription:
     def display_info(self):
         return f"Prescription for Patient {self.patient_id} by Doctor {self.doctor_id}: {self.medication} - {self.dosage}"
 
-# Factory Method
 class PrescriptionFactory:
     @staticmethod
     def create_prescription(patient_id: int, doctor_id: int, medication: str, dosage: str):
         return Prescription(patient_id, doctor_id, medication, dosage)
 
-# Example Usage
 doctor = Doctor(1)
 patient = Patient(101)
 data_entry = DataEntry(201)
