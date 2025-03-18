@@ -38,7 +38,7 @@ jobs:
           pip install pytest pymysql
 
       - name: Wait for MySQL to be Ready
-        run: sleep 10  # Ensures MySQL service is up before running tests
+        run: sleep 10  
 
       - name: Run Tests
         run: pytest -v -s test_hospitality_system.py
