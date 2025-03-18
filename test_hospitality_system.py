@@ -1,5 +1,5 @@
 import pytest
-from hospitality_system import *
+from src.hospitality_system import *
 
 def test_doctor_instantiation():
     doctor = Doctor(emp_id=1)
