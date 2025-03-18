@@ -1,0 +1,44 @@
+name: Hospitality System 
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test_hospitality_system:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: 1234
+          MYSQL_DATABASE: hospitality_system
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd "mysqladmin ping --host=localhost --user=root --password=1234"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set Up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install pytest pymysql
+
+      - name: Wait for MySQL to be Ready
+        run: sleep 10  # Ensures MySQL service is up before running tests
+
+      - name: Run Tests
+        run: pytest -v -s test_hospitality_system.py
